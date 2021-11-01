@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "sample-drawing",
+    "slug": "sample-drawing",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "sample-drawing"
+}
