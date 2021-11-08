@@ -1,16 +1,19 @@
 
-const Colors = {
-    primary:'#03A9F4',
-    primaryDark:'#0288D1',
-    primaryLight:'#B3E5FC',
-    accent:'#4CAF50',
-    primaryText:'#212121',
-    secondaryText:'#757575',
-    icons:'#FFFFFF',
-    divider:'#BDBDBD',
-    danger:'#ff0000',
-    warning:'#ffa500',
-    info:'#ffff00'
+const COLORS = {
+    primaryColor:'#03A9F4',
+    primaryDarkColor:'#0288D1',
+    primaryLightColor:'#B3E5FC',
+    accentColor:'#4CAF50',
+    primaryTextColor:'#212121',
+    secondaryTextColor:'#757575',
+    iconsColor:'#FFFFFF',
+    dividerColor:'#BDBDBD',
+    dangerColor:'#ff0000',
+    warningColor:'#ffa500',
+    infoColor:'#ffff00',
+    blackColor:'#000000',
+    whiteColor:'#FFFFFF',
+
 };
 
-export default Colors;
+export default COLORS;
