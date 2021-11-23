@@ -1,5 +1,7 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {View,Text,StyleSheet,ImageBackground, Button} from 'react-native';
+import { TouchableOpacity } from "react-native-gesture-handler";
 import COLORS from "../constants/Colors";
 import { MEALS } from "../utils/dummy-data";
 
@@ -41,7 +43,7 @@ MealDetailScreen.navigationOptions= navigationData=>{
     const mealDetail= MEALS.find(m=>m.id === mealId);
     return {
         headerTitle:mealDetail.title,
-        headerRight: <Button title='Fav'  style={styles.favButton} onPress={()=>console.log('Favorite dish')}></Button>,
+        headerRight: <TouchableOpacity><Ionicons onPress={()=>{console.log('make fav')}} name='ios-star' style={{marginHorizontal:10}} size={25} color={COLORS.whiteColor} /></TouchableOpacity>,
     };
 };
 

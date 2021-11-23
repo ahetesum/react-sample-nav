@@ -9,6 +9,13 @@ const FilterScreen = props =>{
     );
 };
 
+FilterScreen.navigationOptions= navigationData=>{
+    console.log(navigationData)
+
+    return {headerTitle:'Filter Meals'};
+};
+
+
 const styles= StyleSheet.create({
     container:{
         flex:1,

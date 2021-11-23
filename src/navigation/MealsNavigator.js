@@ -7,7 +7,14 @@ import CategoryMealScreen from '../screens/CategoryMealScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import FavoriteScreen from '../screens/FavoriteScreen';
+import FilterScreen from '../screens/FilterScreen';
 import { Ionicons } from '@expo/vector-icons';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+
+const defaultNavOptios= {
+    headerStyle:{backgroundColor:COLORS.primaryDarkColor},
+    headerTintColor: COLORS.primaryTextColor,
+};
 
 const MealNavigator = createStackNavigator({
     Category: {
@@ -25,12 +32,21 @@ const MealNavigator = createStackNavigator({
  
     },
 },{
-    defaultNavigationOptions:{
-        headerStyle:{backgroundColor:COLORS.primaryDarkColor},
-        headerTintColor: COLORS.primaryTextColor,
-    }
+    defaultNavigationOptions:defaultNavOptios
 });
+const FavNavigator = createStackNavigator({
 
+    FavMeal: {
+        screen:FavoriteScreen,
+
+    },
+    MealDetail: {
+        screen:MealDetailScreen,
+ 
+    },
+},{
+    defaultNavigationOptions:defaultNavOptios
+});
 
 const MealsTabFavNavigator= createBottomTabNavigator({
     Meal : {screen : MealNavigator, navigationOptions:{
@@ -39,16 +55,35 @@ const MealsTabFavNavigator= createBottomTabNavigator({
             return <Ionicons name='ios-restaurant' size={25} color={tabInfo.tintColor} />
         }
     }},
-    Favorite: { screen: FavoriteScreen, navigationOptions:{
+    Favorite: { screen: FavNavigator, navigationOptions:{
         tabBarLabel:'Favorites',
         tabBarIcon: (tabInfo)=>{
             return <Ionicons name='ios-star' size={25} color={tabInfo.tintColor} />
         }
     }},
-},
-{tabBarOptions:{
-    activeTintColor:COLORS.accentColor,
-}
+    },
+    {tabBarOptions:{
+        activeTintColor:COLORS.accentColor,
+    }
 });
 
-export default createAppContainer( MealsTabFavNavigator);
+const FilterStackNav= createStackNavigator({
+    Filter:FilterScreen,
+});
+
+const MainDeawerNavigation= createDrawerNavigator({
+    MealFavDrawerNav: {screen : MealsTabFavNavigator,navigationOptions:{
+        drawerLabel:'Home'
+    }},
+    FilterDrawerNav:{screen : FilterStackNav,navigationOptions:{
+        drawerLabel:'Filter'
+    }},
+},
+{
+    contentOptions:{
+        activeTintColor:COLORS.accentColor,
+    }
+});
+
+
+export default createAppContainer( MainDeawerNavigation);

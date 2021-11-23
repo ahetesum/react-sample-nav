@@ -1,3 +1,4 @@
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {View,Text,StyleSheet, FlatList} from 'react-native';
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -32,6 +33,17 @@ const CategoryScreen = props =>{
                 renderItem={renderGridItem}
             />
     );
+};
+
+
+CategoryScreen.navigationOptions= navData =>{
+
+    return {
+        headerLeft: <TouchableOpacity><Ionicons onPress={()=>{
+            //navData.navigation.openDrawer();
+            navData.navigation.toggleDrawer();
+        }} name='ios-menu' style={{marginHorizontal:10}} size={25} color={COLORS.whiteColor} /></TouchableOpacity>,
+    };
 };
 
 const styles= StyleSheet.create({
