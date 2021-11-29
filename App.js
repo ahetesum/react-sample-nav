@@ -1,12 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { combineReducers, createStore } from 'redux';
 import MealsNavigator from './src/navigation/MealsNavigator';
-import MealDetailScreen from './src/screens/MealDetailScreen';
+import mealsReducer from './src/store/reducers/mealsReducer';
+
+const rootReducer = combineReducers({
+  meals:mealsReducer
+});
+const store = createStore(rootReducer);
 
 export default function App() {
   return (
-    <MealsNavigator />
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
   );
 }
 

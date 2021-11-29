@@ -1,18 +1,19 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import {View,Text,StyleSheet, TouchableOpacity} from 'react-native';
+import { useSelector } from "react-redux";
 import MealList from "../components/MealList";
 import COLORS from "../constants/Colors";
-import { MEALS } from "../utils/dummy-data";
 
 const FavoriteScreen = props =>{
+
+    const favoriteMeals= useSelector(state=>state.meals.favoriteMeals);
     const catId= props.navigation.getParam('categoryId');
-    const listOfMeals= MEALS.filter(m=>m.id ==='m1'|| m.id==='m2');
 
 
     return(
         <View style={styles.container}>
-            <MealList  listMeals={listOfMeals} navigation={props.navigation}/>
+            <MealList  listMeals={favoriteMeals} navigation={props.navigation}/>
         </View>
     );
 };

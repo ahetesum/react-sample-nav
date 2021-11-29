@@ -69,13 +69,14 @@ const MealsTabFavNavigator= createBottomTabNavigator({
 
 const FilterStackNav= createStackNavigator({
     Filter:FilterScreen,
-});
+},{defaultNavigationOptions:defaultNavOptios});
 
 const MainDeawerNavigation= createDrawerNavigator({
     MealFavDrawerNav: {screen : MealsTabFavNavigator,navigationOptions:{
         drawerLabel:'Home'
     }},
-    FilterDrawerNav:{screen : FilterStackNav,navigationOptions:{
+    FilterDrawerNav:{screen : FilterStackNav,
+        navigationOptions:{
         drawerLabel:'Filter'
     }},
 },
@@ -83,7 +84,12 @@ const MainDeawerNavigation= createDrawerNavigator({
     contentOptions:{
         activeTintColor:COLORS.accentColor,
     }
-});
+},
+{
+    initialRouteName: 'MealFavDrawerNav',
+
+}
+);
 
 
 export default createAppContainer( MainDeawerNavigation);

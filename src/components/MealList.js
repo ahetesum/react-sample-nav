@@ -13,7 +13,7 @@ const MealList=props=>{
             <MealListTile item={dataItem.item} 
             onSelectMeal={()=>props.navigation.navigate({
                 routeName:'MealDetail',
-                params:{mealId:dataItem.item.id}
+                params:{mealId:dataItem.item.id,mealTitle:dataItem.item.title}
                 })}/>
         )
     }
