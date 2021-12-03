@@ -1,8 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useCallback, useEffect, useState } from "react";
 import {View,Text,StyleSheet, TouchableOpacity, Switch} from 'react-native';
+import { useDispatch } from "react-redux";
 import COLORS from "../constants/Colors";
 import Dimens from "../constants/Dimens";
+import { appliedFilter } from "../store/actions/mealsAction";
+
 
 
 const FilterSwitch=(props)=>{
@@ -27,20 +30,21 @@ const FilterScreen = props =>{
     const [isVegan,setIsVegan] = useState(false);
     const [isVegitarian,setIsVegitarian] = useState(false);
 
+    const dispatchFilters=useDispatch();
 
     const saveFilters= useCallback(()=>{
        const appliedFilters={
-            glutenFree:isGlutenFree,
-            lactoseFree:isLactoseFree,
-            vegan:isVegan,
-            vegitarian:isVegitarian
+            glutenFree: isGlutenFree,
+            lactoseFree: isLactoseFree,
+            vegan: isVegan,
+            vegitarian: isVegitarian
         };
-
-        console.log(appliedFilters);
-    },[isVegan,isGlutenFree,isLactoseFree,isVegitarian]);
+        //console.log(appliedFilters)
+        dispatchFilters(appliedFilter(appliedFilters));
+    },[isVegan,isGlutenFree,isLactoseFree,isVegitarian,dispatchFilters]);
 
     useEffect(()=>{
-        props.navigation.setParams({save:saveFilters})
+        navigation.setParams({save:saveFilters})
     },[saveFilters]);
 
     return(
@@ -62,9 +66,9 @@ const FilterScreen = props =>{
             navData.navigation.toggleDrawer();
         }} name='ios-menu' style={{marginHorizontal:10}} size={25} color={COLORS.whiteColor} /></TouchableOpacity>,
    
-        headerRight: <TouchableOpacity><Ionicons onPress={()=>{
-            navData.navigation.getParam('save')();
-        }} name='ios-save' style={{marginHorizontal:10}} size={25} color={COLORS.whiteColor} /></TouchableOpacity>,
+        headerRight: <TouchableOpacity><Ionicons onPress={
+            navData.navigation.getParam('save')
+            } name='ios-save' style={{marginHorizontal:10}} size={25} color={COLORS.whiteColor} /></TouchableOpacity>,
    
     };
 };

@@ -10,7 +10,15 @@ const FavoriteScreen = props =>{
     const favoriteMeals= useSelector(state=>state.meals.favoriteMeals);
     const catId= props.navigation.getParam('categoryId');
 
-
+    if(favoriteMeals.length ===0 || !favoriteMeals)
+    {
+        return (
+            <View style={styles.containerText}>
+                <Text style={styles.noDataText}>No favorite meals. Please add favorite meal</Text>
+            </View>
+        );
+    }
+    else
     return(
         <View style={styles.container}>
             <MealList  listMeals={favoriteMeals} navigation={props.navigation}/>
@@ -35,6 +43,14 @@ const styles= StyleSheet.create({
         flex:1,
         
     },
+    containerText:{
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center'
+    },
+    noDataText:{
+        color:COLORS.primaryTextColor
+    }
 });
 
 export default FavoriteScreen;

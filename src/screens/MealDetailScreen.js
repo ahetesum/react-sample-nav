@@ -11,6 +11,9 @@ const MealDetailScreen = props =>{
     const availableMeals= useSelector(state=>state.meals.meals);
     const mealId= props.navigation.getParam('mealId');
     const mealDetail= availableMeals.find(m=>m.id === mealId);
+    const isFavoriteMeal= useSelector(
+        state=>state.meals.favoriteMeals.some(m=>m.id===mealId)
+        );
 
     const dispatchFav= useDispatch();
 
@@ -21,6 +24,10 @@ const MealDetailScreen = props =>{
     useEffect(()=>{
         props.navigation.setParams({toogleFav:toggleFavoriteHandler});
     },[toggleFavoriteHandler]);
+
+    useEffect(()=>{
+        props.navigation.setParams({isFav:isFavoriteMeal});
+    },[isFavoriteMeal]);
 
     return(
         <View style={styles.container}>
@@ -57,10 +64,12 @@ MealDetailScreen.navigationOptions= navigationData=>{
     const mealId= navigationData.navigation.getParam('mealId');
     const mealTitle= navigationData.navigation.getParam('mealTitle');
     const tgFavorite= navigationData.navigation.getParam('toogleFav');
+    const isFavorite= navigationData.navigation.getParam('isFav');
+
     return {
         headerTitle: mealTitle,
         headerRight: <TouchableOpacity><Ionicons onPress={tgFavorite} 
-            name='ios-star' style={{marginHorizontal:10}} size={25} color={COLORS.whiteColor} /></TouchableOpacity>,
+            name={isFavorite? "ios-star":"ios-star-outline"} style={{marginHorizontal:10}} size={25} color={COLORS.whiteColor} /></TouchableOpacity>,
     };
 };
 
